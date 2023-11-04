@@ -4,13 +4,20 @@ while (i < numberOfButtons) {
     document.querySelectorAll("button")[i].addEventListener("click", function () {
         var buttonInnerHTML = this.innerHTML;
         checkKeyPressed(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML)
     });
     i++
 }
 
 /* line 4 has something called an anonymous function or callback function
 
-when not using anon functions, you're effectively passing functions as inputs. These are called Higher Order Functions, they are functions that can take other functions as inputs
+
+when not using anon functions, you're effectively passing functions as inputs.
+
+These are called Higher Order Functions, they are functions that can take other functions as inputs
+
+The functions called by Higher Order Functions are called callback functions
+
 
 javascript, java, ruby, python, haskell, c++, php, c#, Go, Swift
 
@@ -50,6 +57,7 @@ objects and methods - #168
 
 addEventListener("keypress", function(event){
     checkKeyPressed(event.key);
+    buttonAnimation(event.key)
 })
 
 
@@ -87,4 +95,14 @@ function checkKeyPressed(key) {
             console.log("Bad people")
 
     }
+}
+
+// callbacks ⭐⭐
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector( "." +currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function (){
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
